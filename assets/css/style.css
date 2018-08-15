@@ -1,0 +1,21 @@
+.display-4 {
+    text-align: center;
+}
+
+#jtronSub{
+    text-align: center;
+}
+
+#gameBox{
+    border: 1px solid rgba(0,0,0,.125);
+    padding-right: 0%;
+}
+
+#memBox{
+    padding-left: 0%;
+}
+
+#bodyMem, #bodyGame{
+    border: 2px solid black;
+}
+
