@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#btn').click(function() {
+     
+var queryURL = "https://api.seatgeek.com/2/events?performers.slug=" + "washington-redskins" + "&client_id=MTI2OTM3NTd8MTUzNDIxNzA0OS45Mg&client_secret=5a186662f95a2be9b6b3a7e0de031a42b656c00e20c4c969c867cdb40bee6811";
+
+$.ajax({
+  url: queryURL,
+ method: "GET"
+}).then(function(response) {
+  console.log(response);
+  console.log(response.events);
+  console.log(response.events[0]);
+
+                for (i=0; i<5; i++) {
+ 
+                var link = $("<a>");
+                link.attr("href", response.events[i].url);
+                link.attr("title",response.events[i].short_title);
+                link.text(response.events[i].short_title);
+                link.addClass("link");
+                console.log(link);
+ 
+                $(".box").append(link);
+            }
+        });
+            });
+        });
+    </script>
+</head>
+ 
+<style>
+    p {
+        margin: 10px;
+        font-weight: bold;
+    }
+    
+    .link {
+        color: blue;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration-style: solid;
+        margin: 10px;
+        display: block;    }
+</style>
+ 
+<body>
+    <h1>Jquery Show Hide </h1>
+    <div class="box" id="box"></div>
+    <p><input type="button" id="btn" value="Create Link"></p>
+</body>
+ 
+</html>
