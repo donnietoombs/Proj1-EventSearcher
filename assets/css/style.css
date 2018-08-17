@@ -11,12 +11,13 @@
     padding-right: 0%;
 }
 
-#memBox{
+#memBox1{
     padding-left: 0%;
 }
 
 #bodyMem, #bodyGame{
     border: 2px solid black;
+    text-align: center;
 }
 
 .gameLink{

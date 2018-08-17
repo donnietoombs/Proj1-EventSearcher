@@ -7,6 +7,8 @@ $("#searchTeamBtn").on("click", function (event) {
   $("#gameDiv").empty();
   $("#dt-tmDiv").empty();
   $("#locationDiv").empty();
+  $("#memBox").empty();
+
 
   // Grabs user input
   var teamName = $("#teamNameInput").val().trim();
@@ -102,10 +104,14 @@ $("#searchTeamBtn").on("click", function (event) {
       var listingLink = $("<a>");
       listingLink.attr("href", itemHLink);
       listingLink.text(response.findItemsByKeywordsResponse[0].searchResult[0].item[j].title);
-      listingLink.addClass("listingLink")
+      listingLink.addClass("listingLink");
 
+      var priceLink =$("<p>");
+      priceLink.text("$" + response.findItemsByKeywordsResponse[0].searchResult[0].item[j].sellingStatus[0].convertedCurrentPrice[0].__value__);
+      priceLink.addClass("priceLink");
+      
       // Appending the teamImage and link to ebay to the images div
-      $("#memBox").append(memImage).append(listingLink);
+      $("#memBox").append(memImage).append(listingLink).append(priceLink);
     }
   });
 });
