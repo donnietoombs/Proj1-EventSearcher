@@ -31,6 +31,43 @@ $.ajax({
         });
             });
         });
+// var queryURL4 =  "http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.1.2&SECURITY-APPNAME=DonnieTo-ProFootb-PRD-3262b1842-e568d10e&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=harry%20potter%20phoenix&paginationInput.entriesPerPage=2";
+var queryURL5 ="http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-NAME=FindingService&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&SECURITY-APPNAME=DonnieTo-ProFootb-PRD-3262b1842-e568d10e&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&GLOBAL-ID=EBAY-US&keywords=" + formattedText + "&paginationInput.entriesPerPage=25&paginationInput.pageNumber=1"
+
+$.ajax({
+  // url: queryURL4,
+  url: queryURL5,
+ method: "GET",
+ dataType: 'jsonp',
+}).then(function(response) {
+  console.log(response); 
+  console.log(response.findItemsByKeywordsResponse);
+
+  for (var j=0; j<response.findItemsByKeywordsResponse[0].searchResult[0].item.length; j++){
+
+var memImageURL = response.findItemsByKeywordsResponse[0].searchResult[0].item[j].galleryURL;
+console.log(memImageURL);
+
+// Creating and storing an image tag
+var memImage = $("<img>");
+var itemHLink = response.findItemsByKeywordsResponse[0].searchResult[0].item[j].viewItemURL;
+
+// Setting the teamImage src attribute to imageUrl
+memImage.attr("src", memImageURL);
+memImage.wrap($("<a>").attr("href", itemHLink));
+memImage.attr("alt", "Memorabilia Image");
+memImage.addClass("picLink");
+memImage.wrap($("<a>").attr("href", itemHLink));
+
+var listingLink =$("<a>");
+    listingLink.attr("href", itemHLink);
+    listingLink.text(response.findItemsByKeywordsResponse[0].searchResult[0].item[j].title);
+    listingLink.addClass("listingLink")
+// Prepending the teamImage to the images div
+$("#memBox").append(memImage).append(listingLink);
+}
+});
+
     </script>
 </head>
  
@@ -47,12 +84,22 @@ $.ajax({
         text-decoration-style: solid;
         margin: 10px;
         display: block;    }
+
+    #memBox {
+        display:block;
+    }    
+
+    .picLink, .listingLink{
+        display: block;
+
+    }
 </style>
  
 <body>
     <h1>Jquery Show Hide </h1>
     <div class="box" id="box"></div>
     <p><input type="button" id="btn" value="Create Link"></p>
+<div id="memBox"></div>
 </body>
  
 </html>

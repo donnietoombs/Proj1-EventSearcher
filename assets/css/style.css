@@ -36,3 +36,15 @@
     width: 250px;
     color: red;
 }
+
+.picLink, .listingLink{
+    display: block;
+
+}
+
+
+
+.table thead th {
+    vertical-align: top;
+    border-bottom: 2px solid #dee2e6;
+}
