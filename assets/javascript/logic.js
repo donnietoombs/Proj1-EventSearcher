@@ -73,7 +73,7 @@ $("#searchTeamBtn").on("click", function (event) {
   });
 
 
-  var queryURL5 = "http://svcs.ebay.com/services/search/FindingService/v1?SERVICE-NAME=FindingService&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&SECURITY-APPNAME=DonnieTo-ProFootb-PRD-3262b1842-e568d10e&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&GLOBAL-ID=EBAY-US&keywords=" + formattedText + "&paginationInput.entriesPerPage=25&paginationInput.pageNumber=1"
+  var queryURL5 = "https://svcs.ebay.com/services/search/FindingService/v1?SERVICE-NAME=FindingService&OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.12.0&SECURITY-APPNAME=DonnieTo-ProFootb-PRD-3262b1842-e568d10e&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&GLOBAL-ID=EBAY-US&keywords=" + formattedText + "&paginationInput.entriesPerPage=25&paginationInput.pageNumber=1"
 
   $.ajax({
     url: queryURL5,
