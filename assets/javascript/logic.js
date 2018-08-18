@@ -41,11 +41,13 @@ $("#searchTeamBtn").on("click", function (event) {
 
       var dttmLink = $("<p>");
       dttmLink.text(response.events[i].datetime_local);
+      dttmLink.addClass("dttmLink");
       console.log(dttmLink);
       $("#dt-tmDiv").append(dttmLink);
 
       var locationLink = $("<p>");
       locationLink.text(response.events[i].venue.name);
+      locationLink.addClass("locationLink");
       console.log(locationLink);
       $("#locationDiv").append(locationLink);
     }
@@ -68,7 +70,8 @@ $("#searchTeamBtn").on("click", function (event) {
 
     // Setting the teamImage src attribute to imageUrl
     teamImage.attr("src", imageUrl);
-    teamImage.attr("alt", "cat image");
+    teamImage.attr("alt", "team image");
+    teamImage.addClass("teamImage")
 
     // Prepending the teamImage to the images div
     $("#teamImage").html(teamImage);
@@ -115,6 +118,7 @@ $("#searchTeamBtn").on("click", function (event) {
     }
   });
 });
+
 
 
 
