@@ -48,6 +48,7 @@
 
 #memBox1{
     padding-left: 0%;
+    text-align: center;
 }
 
 #bodyMem, #bodyGame{
@@ -100,11 +101,6 @@
     font-size: 20px;
     text-decoration: underline;
     color: #0064D3;
-
-}
-.picLink, .listingLink{
-    display: block;
-
 }
 
 .jt2{
