@@ -1,3 +1,6 @@
+$(".error").empty;
+
+
 // Performing GET requests to the OMDB API and logging the responses to the console
   // Initialize Firebase
         // This is the code we copied and pasted from our app page
@@ -22,8 +25,16 @@ $("#searchTeamBtn").on("click", function(event) {
   // Don't refresh the page!
   event.preventDefault();
 
-  // console.log(teamNameInput.value.split(' ').length()); 
-  // < 2)
+  var tnInput = $('#teamNameInput').val().split(' ').length;
+  
+  if (tnInput < 2) {
+    
+
+  $(".error").text("Please enter city and team name to search");
+   setTimeout(function(){$('.error').fadeOut();}, 3000);
+  }
+
+  else{
 
   var teamName2 = $("#teamNameInput").val().trim().toUpperCase();
 
@@ -148,6 +159,7 @@ var queryURL = "https://api.seatgeek.com/2/events?performers.slug=" + formattedT
       $("#memBox").append(memImage).append(listingLink).append(priceLink);
     }
   });
+  }
 });
 
 database.ref().on("value", function(snapshot) {
