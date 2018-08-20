@@ -1,23 +1,54 @@
 // Performing GET requests to the OMDB API and logging the responses to the console
+  // Initialize Firebase
+        // This is the code we copied and pasted from our app page
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyDBRcohSTqrqYwlY-FYyp2v5rYLpA2SQf4",
+          authDomain: "eventsearcherproj1.firebaseapp.com",
+          databaseURL: "https://eventsearcherproj1.firebaseio.com",
+          projectId: "eventsearcherproj1",
+          storageBucket: "eventsearcherproj1.appspot.com",
+          messagingSenderId: "478596741259"
+        };
+        firebase.initializeApp(config);
 
+ // Get a reference to the database service
+ var database = firebase.database();
 
-$("#searchTeamBtn").on("click", function (event) {
+ var teamName2="";
+
+// Capture Button Click
+$("#searchTeamBtn").on("click", function(event) {
+  // Don't refresh the page!
   event.preventDefault();
+
+  // console.log(teamNameInput.value.split(' ').length()); 
+  // < 2)
+
+  var teamName2 = $("#teamNameInput").val().trim().toUpperCase();
+
+  database.ref().set({
+   teamName: teamName2,
+  });
+
 
   $("#gameDiv").empty();
   $("#dt-tmDiv").empty();
   $("#locationDiv").empty();
   $("#memBox").empty();
-
+ 
 
   // Grabs user input
   var teamName = $("#teamNameInput").val().trim();
-  teamName.toLowerCase();
+
   var lowStr = teamName.toLowerCase();
   var formattedText = lowStr.replace(/ /g, "-");
   console.log(formattedText);
+  searchedTeams= teamName.toUpperCase();
+  console.log(searchedTeams);
 
-  var queryURL = "https://api.seatgeek.com/2/events?performers.slug=" + formattedText + "&client_id=MTI2OTM3NTd8MTUzNDIxNzA0OS45Mg&client_secret=5a186662f95a2be9b6b3a7e0de031a42b656c00e20c4c969c867cdb40bee6811&per_page=19";
+
+var queryURL = "https://api.seatgeek.com/2/events?performers.slug=" + formattedText + "&client_id=MTI2OTM3NTd8MTUzNDIxNzA0OS45Mg&client_secret=5a186662f95a2be9b6b3a7e0de031a42b656c00e20c4c969c867cdb40bee6811&per_page=19";
 
   $.ajax({
     url: queryURL,
@@ -117,6 +148,17 @@ $("#searchTeamBtn").on("click", function (event) {
       $("#memBox").append(memImage).append(listingLink).append(priceLink);
     }
   });
+});
+
+database.ref().on("value", function(snapshot) {
+
+  // Change the HTML to reflect
+  $("#ltsBox").text(snapshot.val().teamName);
+
+
+  // Handle the errors
+}, function(errorObject) {
+  console.log("Errors handled: " + errorObject.code);
 });
 
 

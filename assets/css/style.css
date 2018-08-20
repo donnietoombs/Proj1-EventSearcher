@@ -145,4 +145,23 @@ text-align: center;
     background-color: #659DBD;
 }
 
+.jt23{
+    margin-bottom: 0;
+    background-color: #03b7a5;
+    align-content: center;
+}
+
+#ltsBox, #tmsBox {
+    text-align: center;
+    background-color: white;
+    height: 50px;
+    font-family: 'Coming Soon', cursive;
+    color: #840a03;
+    font-size: 43px;
+}
+
+#statsHeading{
+    font-family: 'Anton', sans-serif;
+    color: whitesmoke;
+}
 
